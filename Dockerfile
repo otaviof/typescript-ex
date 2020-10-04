@@ -2,10 +2,8 @@ FROM node:alpine
 
 WORKDIR /src
 
-COPY package.json .
-RUN npm install
-
 COPY . .
+RUN npm install
 RUN npm run build
 
 ENTRYPOINT [ "npm", "start" ]
