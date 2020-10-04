@@ -1,0 +1,18 @@
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: typescript-ex-test
+spec:
+  inputs:
+    resources:
+      - name: source
+        type: git
+  steps:
+    - name: test
+      image: node:alpine
+      workingDir: /workspace/source
+      script: |
+        npm install && \
+        npm run build && \
+        npm test

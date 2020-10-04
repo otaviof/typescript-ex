@@ -12,6 +12,13 @@ spec:
       description: The image tag which will be built
       default: image-registry.openshift-image-registry.svc:5000/otaviof/typescript-ex:latest
   tasks:
+    - name: test
+      taskRef:
+        name: typescript-ex-test
+      resources:
+        inputs:
+          - name: source
+            resource: source
     - name: build
       params:
         - name: OUTPUT

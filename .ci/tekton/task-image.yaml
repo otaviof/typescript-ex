@@ -1,0 +1,41 @@
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: typescript-ex-image
+spec:
+  inputs:
+    resources:
+      - name: source
+        type: git
+    params:
+      - name: OUTPUT
+        description: The image tag which will be built
+  steps:
+    - name: build
+      image: quay.io/buildah/stable:latest
+      securityContext:
+        privileged: true
+      workingDir: /workspace/source
+      script: |
+        buildah bud \
+          --storage-driver=overlay \
+          --tag=$(params.OUTPUT) \
+          .
+      volumeMounts:
+        - name: containers-storage
+          mountPath: /var/lib/containers
+    - name: push
+      image: quay.io/buildah/stable:latest
+      securityContext:
+        privileged: true
+      script: |
+        buildah push \
+          --tls-verify=false \
+          $(params.OUTPUT)
+      volumeMounts:
+        - name: containers-storage
+          mountPath: /var/lib/containers
+  volumes:
+    - name: containers-storage
+      emptyDir: {}
