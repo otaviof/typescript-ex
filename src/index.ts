@@ -15,5 +15,5 @@ Bon voyage, Shipwright!
 });
 
 app.listen(PORT, () => {
-    console.log(`Application is running at https://localhost:${PORT}`);
+    console.log(`Application is running at http://127.0.0.1:${PORT}`);
 });
