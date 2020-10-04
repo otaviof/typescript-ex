@@ -7,8 +7,15 @@ spec:
   resources:
     - name: source
       type: git
+  params:
+    - name: OUTPUT
+      description: The image tag which will be built
+      default: image-registry.openshift-image-registry.svc:5000/otaviof/typescript-ex:latest
   tasks:
     - name: build
+      params:
+        - name: OUTPUT
+          value: $(params.OUTPUT)
       taskRef:
         name: typescript-ex-image
       resources:

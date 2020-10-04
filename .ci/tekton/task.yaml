@@ -11,9 +11,8 @@ spec:
     params:
       - name: OUTPUT
         description: The image tag which will be built
-        default: otaviof/typescript-ex:latest
   steps:
-    - name: build-image
+    - name: build
       image: quay.io/buildah/stable:latest
       securityContext:
         privileged: true
@@ -21,9 +20,19 @@ spec:
       script: |
         buildah bud \
           --storage-driver=overlay \
-          --tls-verify=false \
           --tag=$(params.OUTPUT) \
           .
+      volumeMounts:
+        - name: containers-storage
+          mountPath: /var/lib/containers
+    - name: push
+      image: quay.io/buildah/stable:latest
+      securityContext:
+        privileged: true
+      script: |
+        buildah push \
+          --tls-verify=false \
+          $(params.OUTPUT)
       volumeMounts:
         - name: containers-storage
           mountPath: /var/lib/containers
