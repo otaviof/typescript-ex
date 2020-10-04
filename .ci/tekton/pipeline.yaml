@@ -1,0 +1,17 @@
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: typescript-ex
+spec:
+  resources:
+    - name: source
+      type: git
+  tasks:
+    - name: build
+      taskRef:
+        name: typescript-ex-image
+      resources:
+        inputs:
+          - name: source
+            resource: source
