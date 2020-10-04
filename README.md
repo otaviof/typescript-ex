@@ -1,6 +1,6 @@
 <p align="center">
-    <a alt="Travis-CI Status" href="https://travis-ci.org/github/otaviof/typescript-ex">
-        <img src="https://travis-ci.org/otaviof/typescript-ex.svg?branch=master">
+    <a alt="Travis-CI Status" href="https://travis-ci.com/github/otaviof/typescript-ex">
+        <img src="https://travis-ci.com/otaviof/typescript-ex.svg?branch=master">
     </a>
 <p>
 
