@@ -5,7 +5,7 @@ WORKDIR /src
 COPY package.json .
 RUN npm install
 
-ADD . .
+COPY . .
 RUN npm run build
 
 ENTRYPOINT [ "npm", "start" ]
