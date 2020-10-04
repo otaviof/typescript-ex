@@ -4,7 +4,12 @@
 Is a "hello world" application written on TypeScript. To build and start, run:
 
 ```sh
+npm install
 npm run build
+```
+Run the application with:
+
+```sh
 npm run start
 ```
 
