@@ -13,8 +13,9 @@ spec:
         description: The image tag which will be built
   steps:
     - name: build
-      image: quay.io/buildah/stable:latest
+      image: quay.io/buildah/upstream:latest
       securityContext:
+        runAsUser: 0
         privileged: true
       workingDir: /workspace/source
       script: |
@@ -26,8 +27,9 @@ spec:
         - name: containers-storage
           mountPath: /var/lib/containers
     - name: push
-      image: quay.io/buildah/stable:latest
+      image: quay.io/buildah/upstream:latest
       securityContext:
+        runAsUser: 0
         privileged: true
       script: |
         buildah push \
