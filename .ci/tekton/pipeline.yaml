@@ -20,6 +20,8 @@ spec:
           - name: source
             resource: source
     - name: build
+      runAfter:
+        - test
       params:
         - name: OUTPUT
           value: $(params.OUTPUT)
