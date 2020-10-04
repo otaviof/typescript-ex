@@ -20,7 +20,6 @@ spec:
       workingDir: /workspace/source
       script: |
         buildah bud \
-          --storage-driver=overlay \
           --tag=$(params.OUTPUT) \
           .
       volumeMounts:
