@@ -8,7 +8,7 @@ app.use('/images', express.static('./assets/images/'))
 app.get('/', (_req: any, res: { send: (arg0: string) => any; }) => {
     return res.send(`
 <body align="center">
-<img src="/images/shipwright-logo.png" width="256" height="256" /><br>
+<img src="/images/logo.png" /><br>
 Bon voyage, Shipwright!
 </body>
     `);
