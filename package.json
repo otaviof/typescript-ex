@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf build ; tsc",
     "test": "npx mocha --require ts-node/register 'src/**/*.spec.ts'",
-    "start": "node build/index.js",
+    "start": "npm run build && node build/index.js",
     "image": "docker build --tag=otaviof/typescript-ex:latest ."
   },
   "keywords": [],
