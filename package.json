@@ -4,7 +4,6 @@
   "description": "TypeScript example application",
   "main": "./build/index.js",
   "scripts": {
-    "ci": "npm build && npm install",
     "build": "rm -rf build ; tsc",
     "test": "npx mocha --require ts-node/register 'src/**/*.spec.ts'",
     "start": "node build/index.js",
