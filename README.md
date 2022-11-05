@@ -1,8 +1,8 @@
 <p align="center">
-    <a alt="Travis-CI Status" href="https://travis-ci.com/github/otaviof/typescript-ex">
-        <img src="https://travis-ci.com/otaviof/typescript-ex.svg?branch=master">
+    <a alt="GitHub-Actions Test" href="https://github.com/otaviof/typescript-ex/actions">
+        <img src="https://github.com/otaviof/typescript-ex/actions/workflows/test.yaml/badge.svg">
     </a>
-<p>
+</p>
 
 `typescript-ex`
 ---------------
