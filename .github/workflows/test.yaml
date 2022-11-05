@@ -7,9 +7,15 @@ on:
       - "**"
     branches:
       - main
+    paths-ignore:
+      - ".ci/**"
+      - "*.md"
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - ".ci/**"
+      - "*.md"
 
 jobs:
   test:
