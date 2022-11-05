@@ -1,24 +1,26 @@
-Tekton based CI
----------------
+OpenShift Pipelines (Tekton)
+----------------------------
 
-In this directory you will find a [Tekton][tekton] based CI, expressed as Kubernetes resource files.
-To apply them run:
+In this directory you will find a [OpenShift Pipelines][openshiftPipelinesDoc] ([Tekton][tekton]) based CI.  To apply them run the following commands.
 
-```sh
-kubectl apply -f .ci/tekton/
+First, create a new project:
+
+```bash
+oc new-project typescript-ex
 ```
 
-## Pipeline
+Then, make sure the service-account `pipeline` has sufficient privileges to run the Pipeline:
 
-Test and build a container image.
+```bash
+oc adm policy add-scc-to-user privileged --serviceaccount=pipeline
+oc adm policy add-role-to-user edit --serviceaccount=pipeline
+```
 
-### Test
+And finally, apply the resources:
 
-Runs application tests with NPM (`npm test`).
-
-### Build
-
-Build a container-image using [`buildah`][buildah], and push to a local registry.
+```bash
+oc apply -f .ci/tekton/
+```
 
 [tekton]: https://github.com/tektoncd/pipeline
-[buildah]: https://github.com/containers/buildah
+[openshiftPipelinesDoc]: https://docs.openshift.com/container-platform/4.11/cicd/pipelines/understanding-openshift-pipelines.html

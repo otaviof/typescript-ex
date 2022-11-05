@@ -1,32 +1,34 @@
 ---
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: typescript-ex
+  labels:
+    app.kubernetes.io/name: typescript-ex
 spec:
   resources:
     - name: source
       type: git
   params:
     - name: OUTPUT
+      type: string
       description: The image tag which will be built
-      default: image-registry.openshift-image-registry.svc:5000/otaviof/typescript-ex:latest
   tasks:
-    - name: test
+    - name: build-and-test
       taskRef:
-        name: typescript-ex-test
+        name: typescript-ex-build-and-test
       resources:
         inputs:
           - name: source
             resource: source
-    - name: build
+    - name: image-build
       runAfter:
-        - test
+        - build-and-test
       params:
         - name: OUTPUT
           value: $(params.OUTPUT)
       taskRef:
-        name: typescript-ex-image
+        name: typescript-ex-build-image
       resources:
         inputs:
           - name: source

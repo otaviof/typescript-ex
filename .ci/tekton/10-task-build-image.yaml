@@ -1,27 +1,27 @@
 ---
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: typescript-ex-image
+  name: typescript-ex-build-image
+  labels:
+    app.kubernetes.io/name: typescript-ex
 spec:
-  inputs:
-    resources:
+  resources:
+    inputs:
       - name: source
         type: git
-    params:
-      - name: OUTPUT
-        description: The image tag which will be built
+  params:
+    - name: OUTPUT
+      description: The image tag which will be built
   steps:
-    - name: build
+    - name: image-build
       image: quay.io/buildah/upstream:latest
       securityContext:
         runAsUser: 0
         privileged: true
       workingDir: /workspace/source
       script: |
-        buildah bud \
-          --tag=$(params.OUTPUT) \
-          .
+        buildah bud --tag=$(params.OUTPUT) .
       volumeMounts:
         - name: containers-storage
           mountPath: /var/lib/containers
@@ -31,9 +31,7 @@ spec:
         runAsUser: 0
         privileged: true
       script: |
-        buildah push \
-          --tls-verify=false \
-          $(params.OUTPUT)
+        buildah push --tls-verify=false $(params.OUTPUT)
       volumeMounts:
         - name: containers-storage
           mountPath: /var/lib/containers
