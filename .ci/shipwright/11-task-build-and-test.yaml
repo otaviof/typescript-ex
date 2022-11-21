@@ -1,0 +1,20 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: typescript-ex-build-and-test
+  labels:
+    app.kubernetes.io/name: typescript-ex
+spec:
+  resources:
+    inputs:
+      - name: source
+        type: git
+  steps:
+    - name: build-and-test
+      image: node:alpine
+      workingDir: /workspace/source
+      script: |
+        npm install && \
+        npm run build && \
+        npm test

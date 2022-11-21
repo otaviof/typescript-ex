@@ -1,0 +1,19 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: typescript-ex
+  labels:
+    app.kubernetes.io/name: typescript-ex
+spec:
+  resources:
+    - name: source
+      type: git
+  tasks:
+    - name: build-and-test
+      taskRef:
+        name: typescript-ex-build-and-test
+      resources:
+        inputs:
+          - name: source
+            resource: source

@@ -1,0 +1,16 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: typescript-ex
+  labels:
+    app.kubernetes.io/name: typescript-ex
+spec:
+  pipelineRef:
+    name: typescript-ex
+  resources:
+    - name: source
+      resourceRef:
+        name: typescript-ex-git
+  serviceAccountName: pipeline
+  timeout: 5m
