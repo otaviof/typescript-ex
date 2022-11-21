@@ -1,0 +1,21 @@
+[project]
+id = "typescript-ex"
+name = "TypeScript Example App"
+version = "0.0.2"
+
+[build]
+exclude = ["/README.md", "/Dockerfile"]
+
+[[build.buildpacks]]
+uri = "gcr.io/paketo-buildpacks/nodejs"
+
+[[build.env]]
+# making sure the `npm run build` command is issued, it will compile the typescript application into
+# pure javascript code, stored in a different directory
+name = "BP_NODE_RUN_SCRIPTS"
+value = "build"
+
+[[build.env]]
+# making sure the javascript code produced by the typescript compiler is the root of the application
+name = "BP_NODE_PROJECT_PATH"
+value = "./build"
