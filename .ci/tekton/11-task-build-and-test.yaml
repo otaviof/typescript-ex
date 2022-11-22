@@ -12,9 +12,12 @@ spec:
         type: git
   steps:
     - name: build-and-test
-      image: node:alpine
+      image: docker.io/node:alpine
       workingDir: /workspace/source
+      env:
+        - name: CI
+          value: "true"
       script: |
-        npm install && \
+        npm ci && \
         npm run build && \
         npm test
