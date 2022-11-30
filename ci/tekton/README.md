@@ -19,7 +19,7 @@ oc adm policy add-role-to-user edit --serviceaccount=pipeline
 And finally, apply the resources:
 
 ```bash
-oc apply -f .ci/tekton/
+oc apply -f ci/tekton/
 ```
 
 [tekton]: https://github.com/tektoncd/pipeline

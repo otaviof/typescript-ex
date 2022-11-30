@@ -8,13 +8,13 @@ on:
     branches:
       - main
     paths-ignore:
-      - ".ci/**"
+      - "ci/**"
       - "*.md"
   pull_request:
     branches:
       - main
     paths-ignore:
-      - ".ci/**"
+      - "ci/**"
       - "*.md"
 
 jobs:

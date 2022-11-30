@@ -63,7 +63,7 @@ docker kill typescript-ex
 
 ## OpenShift Pipelines (Tekton)
 
-The resource to run continuous-integration jobs are documented on the [`.ci/tekton` directory](./.ci/tekton/).
+The resource to run continuous-integration jobs are documented on the [`ci/tekton` directory](./ci/tekton/).
 
 
 [shipwright]: https://github.com/shipwright-io
