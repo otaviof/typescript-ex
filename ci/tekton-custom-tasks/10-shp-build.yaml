@@ -1,0 +1,14 @@
+---
+apiVersion: shipwright.io/v1alpha1
+kind: Build
+metadata:
+  name: typescript-ex
+spec:
+  source:
+    url: https://github.com/otaviof/typescript-ex.git
+  strategy:
+    apiVersion: v1alpha1
+    kind: ClusterBuildStrategy
+    name: buildpacks-v3
+  output:
+    image: image-registry.openshift-image-registry.svc:5000/typescript-ex/typescript-ex:latest
