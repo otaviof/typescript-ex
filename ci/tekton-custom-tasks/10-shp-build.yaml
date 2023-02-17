@@ -11,4 +11,6 @@ spec:
     kind: ClusterBuildStrategy
     name: buildpacks-v3
   output:
-    image: image-registry.openshift-image-registry.svc:5000/typescript-ex/typescript-ex:latest
+    image: ghcr.io/otaviof/typescript-ex:latest
+    credentials:
+      name: ghcr.io
