@@ -9,7 +9,7 @@ app.get('/', (_req: any, res: { send: (arg0: string) => any; }) => {
     return res.send(`
 <body align="center">
 <img src="/images/logo.png" /><br>
-Bon voyage, Shipwright!
+typescript-ex: Bon voyage, Shipwright!
 </body>
     `);
 });
