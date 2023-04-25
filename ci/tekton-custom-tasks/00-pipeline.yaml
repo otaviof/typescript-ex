@@ -10,17 +10,17 @@ spec:
     - name: source
       type: git
   tasks:
-    - name: build-and-test
+    - name: ci
       taskRef:
-        name: typescript-ex-build-and-test
+        name: typescript-ex-ci
       resources:
         inputs:
           - name: source
             resource: source
-    - name: shipwright-build
+    - name: shipwright
+      runAfter:
+        - ci
       taskRef:
         apiVersion: shipwright.io/v1alpha1
         kind: Build
         name: typescript-ex
-      runAfter:
-        - build-and-test

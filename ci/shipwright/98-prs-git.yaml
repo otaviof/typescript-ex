@@ -2,9 +2,9 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: typescript-ex-git
   labels:
     app.kubernetes.io/name: typescript-ex
+  name: typescript-ex-git
 spec:
   type: git
   params:

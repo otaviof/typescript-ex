@@ -2,19 +2,16 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: typescript-ex-build-image
   labels:
     app.kubernetes.io/name: typescript-ex
+  name: typescript-ex-buildah
 spec:
   resources:
     inputs:
       - name: source
         type: git
-  params:
-    - name: OUTPUT
-      description: The image tag which will be built
   steps:
-    - name: image-build
+    - name: build
       image: quay.io/buildah/upstream:latest
       securityContext:
         runAsUser: 0

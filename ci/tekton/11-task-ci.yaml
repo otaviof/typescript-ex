@@ -2,22 +2,22 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: typescript-ex-build-and-test
   labels:
     app.kubernetes.io/name: typescript-ex
+  name: typescript-ex-ci
 spec:
   resources:
     inputs:
       - name: source
         type: git
   steps:
-    - name: build-and-test
+    - name: npm-ci
       image: docker.io/node:alpine
       workingDir: /workspace/source
       env:
         - name: CI
           value: "true"
       script: |
-        npm ci && \
+        npm install && \
         npm run build && \
         npm test

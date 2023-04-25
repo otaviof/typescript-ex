@@ -2,18 +2,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: typescript-ex
   labels:
     app.kubernetes.io/name: typescript-ex
+  name: typescript-ex
 spec:
   pipelineRef:
     name: typescript-ex
-  params:
-    - name: OUTPUT
-      value: image-registry.openshift-image-registry.svc:5000/typescript-ex/typescript-ex:latest
   resources:
     - name: source
       resourceRef:
         name: typescript-ex-git
-  serviceAccountName: pipeline
-  timeout: 5m

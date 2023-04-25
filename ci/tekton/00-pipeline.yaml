@@ -2,33 +2,29 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: typescript-ex
   labels:
     app.kubernetes.io/name: typescript-ex
+  name: typescript-ex
 spec:
   resources:
     - name: source
       type: git
-  params:
-    - name: OUTPUT
-      type: string
-      description: The image tag which will be built
   tasks:
-    - name: build-and-test
+    - name: ci
       taskRef:
-        name: typescript-ex-build-and-test
+        name: typescript-ex-ci
       resources:
         inputs:
           - name: source
             resource: source
-    - name: image-build
+    - name: buildah
       runAfter:
-        - build-and-test
+        - ci
       params:
         - name: OUTPUT
           value: $(params.OUTPUT)
       taskRef:
-        name: typescript-ex-build-image
+        name: typescript-ex-buildah
       resources:
         inputs:
           - name: source
